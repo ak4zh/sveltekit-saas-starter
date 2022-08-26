@@ -1,8 +1,6 @@
 <script lang="ts">
     import { SITE_DESCRIPTION, SITE_NAME, SITE_TAG_LINE } from '$lib/utils/siteConfig';
-	import { Card, LogoCloud, Divider, Logo, Button, TabGroup, Tab } from '@brainandbones/skeleton';
-    import { writable } from 'svelte/store';
-    let storeFramework = writable('')
+	import { Button } from '@brainandbones/skeleton';
 </script>
 
 <div class="space-y-8 lg:text-left">
