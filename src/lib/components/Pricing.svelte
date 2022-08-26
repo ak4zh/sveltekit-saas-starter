@@ -1,19 +1,31 @@
-<script>
-    import { PRICING_DESCRIPTION, PRICING_TAGLINE } from "$lib/utils/siteConfig";
+<script lang="ts">
     import PricingCard from "./PricingCard.svelte";
+    import { writable, type Writable } from "svelte/store";
+    import { TabGroup, Tab } from "@brainandbones/skeleton";
+    export let products = {}
+    let storeTab: Writable<string> = writable(Object.keys(products)[0] || 'month');
+    
+    const intervals = {
+        month: 'Monthly',
+        year: 'Yearly'
+    }
+    console.log(products)
 </script>
 
-<section>
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold">{PRICING_TAGLINE}</h2>
-            <p class="mb-5 font-light text-surface-500 sm:text-xl dark:text-surface-400">{PRICING_DESCRIPTION}</p>
+<TabGroup selected={storeTab} justify="justify-start md:justify-center" highlight="border-accent-500" color="text-accent-500">
+    {#each Object.entries(products) as [interval, prices]}
+        <Tab value="{interval}">
+            <span>{intervals[interval]}</span>
+        </Tab>
+    {/each}
+</TabGroup>
+
+{#each Object.entries(products) as [interval, prices]}
+    {#if $storeTab === interval}
+        <div class="mt-4 space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+            {#each prices as price}
+                <PricingCard {price}/>
+            {/each}
         </div>
-        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-            <!-- Pricing Card -->
-            <PricingCard />
-            <PricingCard recommended={true}/>
-            <PricingCard />
-        </div>
-    </div>
-</section>
+    {/if}
+{/each}
