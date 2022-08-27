@@ -43,6 +43,8 @@
             </ListItem>
         {/each}
     </List>
-    <Button href="{pricingPlan.path}" variant="filled-primary">Skeleton</Button>
+    <form method="post" action="/payment/stripe">
+        <input name="priceId" value={price.id} type="text" hidden/>
+        <Button type="submit" variant="filled-primary">Skeleton</Button>
+    </form>
 </Card>
-

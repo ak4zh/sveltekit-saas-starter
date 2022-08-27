@@ -9,7 +9,6 @@
         month: 'Monthly',
         year: 'Yearly'
     }
-    console.log(products)
 </script>
 
 <TabGroup selected={storeTab} justify="justify-start md:justify-center" highlight="border-accent-500" color="text-accent-500">
@@ -23,7 +22,7 @@
 {#each Object.entries(products) as [interval, prices]}
     {#if $storeTab === interval}
         <div class="mt-4 space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
-            {#each prices as price}
+            {#each prices.sort((a, b) => a.unit_amount - b.unit_amount) as price}
                 <PricingCard {price}/>
             {/each}
         </div>
