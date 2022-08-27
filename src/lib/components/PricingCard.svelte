@@ -1,6 +1,6 @@
 <script>
     import { groupProductsByInterval } from "$lib/utils/groupBy";
-import { Card, List, ListItem, Button } from "@brainandbones/skeleton";
+    import { Card, List, ListItem, Button } from "@brainandbones/skeleton";
 
     export let recommended = false
     export const pricingPlan = {

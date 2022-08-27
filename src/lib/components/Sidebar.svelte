@@ -5,6 +5,7 @@
 
 	const visible: Writable<boolean> = writable(false);
     export let drawer: boolean = false
+    export let data
     $: if (drawer) {visible.set(drawer)}
     $: drawer = $visible
 </script>
@@ -34,7 +35,8 @@
     <svelte:fragment slot="footer">
         <Divider class="opacity-60" />
         <div class="text-xs opacity-50 p-4 flex justify-between">
-
+            {data?.user.email}
+            <Button variant="ring-accent" href="/logout">Log out</Button>
         </div>
     </svelte:fragment>
 </Drawer>

@@ -3,12 +3,14 @@
 	import Sidebar from '$lib/components/Sidebar.svelte';
 	import { writable } from 'svelte/store';
 	let drawer = writable(false)
+	/** @type {import('./$types').LayoutData} */
+	export let data
 </script>
 
 
 <main class="flex flex-row">
 	<!-- Drawer -->
-    <Sidebar bind:drawer={$drawer}/>
+    <Sidebar bind:drawer={$drawer} {data}/>
 	<!-- Page Content -->
 	<div id="main" class="w-screen h-screen overflow-y-auto">
 		<header class="lg:hidden flex p-8 space-x-4">
