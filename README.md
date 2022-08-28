@@ -20,3 +20,10 @@ A free SvelteKit template for SaaS products.
 
     PUBLIC_SUPABASE_URL=
     PUBLIC_SUPABASE_ANON_KEY=
+
+
+## Pages
+
+### Pricing Page
+
+Pricing page pulls the data from stripe directly so it's always updated with any change you make in stripe dashboard.
