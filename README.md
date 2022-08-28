@@ -1,4 +1,5 @@
 # SvelteKit SaaS Starter
+
 A free SvelteKit template for SaaS products.
 
 # Technologies
@@ -8,7 +9,6 @@ A free SvelteKit template for SaaS products.
 - Skeleton - Svelte component library
 - Stripe - Payment processor
 - Supabase - Postgres Database & Authentication.
-
 
 # Environment Variables
 
@@ -20,7 +20,6 @@ A free SvelteKit template for SaaS products.
 
     PUBLIC_SUPABASE_URL=
     PUBLIC_SUPABASE_ANON_KEY=
-
 
 ## Pages
 

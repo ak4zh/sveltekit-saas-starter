@@ -1,7 +1,6 @@
 import { supabase } from '$lib/db';
 import { parse } from 'cookie';
 import type { Handle } from '@sveltejs/kit';
-import { SUPABASE_SERVICE_KEY } from '$env/static/private'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const cookies = parse(event.request.headers.get('cookie') || '');
