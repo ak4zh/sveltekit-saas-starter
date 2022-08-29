@@ -31,6 +31,7 @@
 		"stripe": "^10.6.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
+		"svelte-loading-spinners": "^0.1.7",
 		"svelte-preprocess": "^4.10.7",
 		"svelte-stripe": "^0.0.19",
 		"tailwindcss": "^3.1.5",
