@@ -6,7 +6,7 @@
 	import { PUBLIC_LOGIN_REDIRECT_PATH } from '$env/static/public'
 	import { Alert, Button, Card, Tab, TabGroup } from '@brainandbones/skeleton';
 	import { writable, type Writable } from 'svelte/store';
-
+	import toast, { Toaster } from 'svelte-french-toast';
 	import { key as loaderKey } from '$lib/utils/loader'
 
 	const loading: Writable<Boolean> = getContext(loaderKey)
@@ -17,30 +17,40 @@
 	let message: string
 	let error: string
 	let selected = writable('signIn')
+	$: isLogIn = $selected === 'signIn'
+	
+	async function signInwithToast() {
+		toast.promise(
+			signIn(),
+			{
+				loading: isLogIn ? 'Logging in...' : 'Creating your account...',
+				success: isLogIn ? 'Login success.' : 'Account created.',
+				error: 'Something went wrong.',
+			}
+		);
+	}
 
 	async function signIn() {
 		loading.set(true)
-		try {
-			if ($selected === 'signIn') {
-				const { user, session, error: authError } = await supabase.auth.signIn({ email: email.toLowerCase(), password });
-				if (authError) {
-					message = authError?.message
-				} else if (!session) {
-					message = 'Check your email for the confirmation link.'
-				}
-			} else {
-				const { user, session, error: authError } = await supabase.auth.signUp({ email: email.toLowerCase(), password });
-				if (authError) {
-					message = authError?.message
-				} else if (!session) {
-					message = 'Check your email for the confirmation link.'
-				}
+		if (isLogIn) {
+			const { user, session, error: authError } = await supabase.auth.signIn({ email: email.toLowerCase(), password });
+			if (authError) {
+				error = authError?.message
+			} else if (!session) {
+				message = 'Check your email for the confirmation link.'
 			}
-
-		} catch {
-
+		} else {
+			const { user, session, error: authError } = await supabase.auth.signUp({ email: email.toLowerCase(), password });
+			if (authError) {
+				error = authError?.message
+			} else if (!session) {
+				message = 'Check your email for the confirmation link.'
+			}
 		}
 		loading.set(false)
+		if (error) {
+			throw Error(error)
+		}
 	}
 
 	onMount(async () => {
@@ -61,12 +71,24 @@
 	$: updateMessage($selected)
 </script>
 
+<Toaster />
 <TabGroup {selected} class="flex justify-center mb-8">
 	<Tab value="signIn">Login with existing account</Tab>
 	<Tab value="signUp">Create a new account</Tab>
 </TabGroup>
 
 <Card class="hover:shadow-xl max-w-sm mx-auto" background="bg-surface-100 dark:bg-surface-800">
+	{#if error}
+		<Alert background="bg-warning-500/30" border="border-l-warning-500">
+			<svelte:fragment slot="message">{error}</svelte:fragment>      
+		</Alert>
+	{/if}
+	
+	{#if message}
+		<Alert>
+			<svelte:fragment slot="message">{message}</svelte:fragment>      
+		</Alert>
+	{/if}
 	<div class="flex flex-col gap-4">
 		<label for="email">
 			Email address
@@ -82,13 +104,6 @@
 				<input bind:value={repeatPassword} name="email" id="email" type="password" placeholder="Password" required/>
 			</label>	
 		{/if}
-		<Button on:click={() => signIn()} variant="filled-primary" disabled={!formValid}>{$selected === 'signIn' ? 'Log In' : 'Sign Up'}</Button>
-		{#if error}
-			<Alert>
-				<svelte:fragment slot="message">{error}</svelte:fragment>      
-			</Alert>	
-		{:else if message}
-			<p>{message}</p>		
-		{/if}
+		<Button on:click={() => signInwithToast()} variant="filled-primary" disabled={!formValid}>{$selected === 'signIn' ? 'Log In' : 'Sign Up'}</Button>
 	</div>
 </Card>

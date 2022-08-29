@@ -4,7 +4,6 @@
 	import { writable } from 'svelte/store';
 	import { setContext } from 'svelte';
 	import { key as loaderKey, loader } from '$lib/utils/loader';
-
 	let loading = writable(false)
 	setContext(loaderKey, loading);
 </script>
