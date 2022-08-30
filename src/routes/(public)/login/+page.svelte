@@ -8,7 +8,9 @@
 	import { writable, type Writable } from 'svelte/store';
 	import toast, { Toaster } from 'svelte-french-toast';
 	import { key as loaderKey } from '$lib/utils/loader'
+	import { page } from '$app/stores';
 
+	const authRedirectUrl = `${$page.url.origin}/login`
 	const loading: Writable<Boolean> = getContext(loaderKey)
 	let email: string = ''
 	let password: string
@@ -20,6 +22,15 @@
 	let magicURL = true
 	$: isLogIn = $selected === 'signIn'
 	
+	onMount(async () => {
+		supabase.auth.onAuthStateChange(async (event, session) => {
+			await setServerSession(session);
+			if (event === "SIGNED_IN") {
+				goto(PUBLIC_LOGIN_REDIRECT_PATH);
+			}
+		})
+	})
+
 	async function proceedwithToast() {
 		toast.promise(
 			signIn(),
@@ -34,14 +45,20 @@
 	async function signIn() {
 		loading.set(true)
 		if (isLogIn) {
-			const { user, session, error: authError } = await supabase.auth.signIn({ email: email.toLowerCase(), password }, {redirectTo: '/login'});
+			const { user, session, error: authError } = await supabase.auth.signIn(
+				{ email: email.toLowerCase(), password }, 
+				{redirectTo: authRedirectUrl}
+			);
 			if (authError) {
 				error = authError?.message
 			} else if (!session) {
 				message = 'Check your email for the confirmation link.'
 			}
 		} else {
-			const { user, session, error: authError } = await supabase.auth.signUp({ email: email.toLowerCase(), password });
+			const { user, session, error: authError } = await supabase.auth.signUp(
+				{ email: email.toLowerCase(), password },
+				{redirectTo: authRedirectUrl}
+			);
 			if (authError) {
 				error = authError?.message
 			} else if (!session) {
