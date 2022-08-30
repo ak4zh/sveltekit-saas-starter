@@ -7,6 +7,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const accessToken = cookies['sb-access-token'];
 	supabase.auth.setAuth(accessToken);
 	const { user } = await supabase.auth.api.getUser(accessToken);
-	event.locals.user = user;
+	if (user) {
+		event.locals.user = user;
+	}
 	return resolve(event);
 };

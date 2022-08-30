@@ -7,11 +7,12 @@
     import { goto } from '$app/navigation';
     import { key as loaderKey } from '$lib/utils/loader';
     import { getContext } from 'svelte';
+    import type { User } from '@supabase/supabase-js'
 
     const loading: Writable<Boolean> = getContext(loaderKey)
 	const visible: Writable<boolean> = writable(false);
     export let drawer: boolean = false
-    export let data
+    export let user: User
     $: if (drawer) {visible.set(drawer)}
     $: drawer = $visible
 
@@ -48,7 +49,7 @@
     <svelte:fragment slot="footer">
         <Divider class="opacity-60" />
         <div class="text-xs opacity-50 p-4 flex justify-between">
-            {data?.user.email}
+            {user.email}
             <Button variant="ring-accent" on:click={() => logOut()}>Log out</Button>
         </div>
     </svelte:fragment>
