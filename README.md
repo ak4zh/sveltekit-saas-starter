@@ -41,17 +41,26 @@ Update the env variables in .env and ./supabase/.env
 
 ### Step 3: Supabase Project and Edge Functions
 
-Create a new supabase project from supabase dashboard and then link the project to current repo.
+1) Create a new supabase project from supabase dashboard 
+2) Now link the project to current repo.
 
-    supabase link --project-ref YOUR_PROJECT_REF -p YOUR_DATABASE_PASSWORD
+        supabase link --project-ref YOUR_PROJECT_REF -p YOUR_DATABASE_PASSWORD
 
-Migrate database
+3) Migrate database
 
-    supabase db push
+        supabase db push
 
-Deploy supabase edge functions
+4) Deploy supabase edge functions
 
-    supabase functions deploy stripe-sync --no-verify-jwt
+        supabase functions deploy stripe-sync --no-verify-jwt
+
+5) Supabase dashboard configs
+    - Go to your `Project Settings > Authentication` and configure following:
+        - User Sessions > Site URL = `https://127.0.0.1:5173` 
+            - (for production set it to your root domain)
+        - Redirect URLs (if this is not set, magic URLs will redirect to root domain instead of /login page)
+            - `https://127.0.0.1:5173/**`
+            - `https://{YOUR_PRODUCTION_DOMAIN}/**`
 
 
 ## Features
