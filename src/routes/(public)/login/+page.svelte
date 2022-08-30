@@ -34,7 +34,7 @@
 	async function signIn() {
 		loading.set(true)
 		if (isLogIn) {
-			const { user, session, error: authError } = await supabase.auth.signIn({ email: email.toLowerCase(), password });
+			const { user, session, error: authError } = await supabase.auth.signIn({ email: email.toLowerCase(), password }, {redirectTo: '/login'});
 			if (authError) {
 				error = authError?.message
 			} else if (!session) {
@@ -54,14 +54,6 @@
 		}
 	}
 
-	onMount(async () => {
-		supabase.auth.onAuthStateChange(async (event, session) => {
-			await setServerSession(session);
-			if (event === "SIGNED_IN") {
-				goto(PUBLIC_LOGIN_REDIRECT_PATH);
-			}
-		})
-	})
 	$: emailIsValid = email?.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
 	$: formValid = $selected === 'signIn' ? emailIsValid && (password || magicURL) : emailIsValid && (magicURL || (password && repeatPassword && password === repeatPassword))
 	function updateMessage(status: string) {

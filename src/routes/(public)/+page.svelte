@@ -1,6 +1,20 @@
 <script lang="ts">
-    import { SITE_DESCRIPTION, SITE_NAME, SITE_TAG_LINE } from '$lib/utils/siteConfig';
+	import { goto } from '$app/navigation';
+	import { PUBLIC_LOGIN_REDIRECT_PATH } from '$env/static/public';
+	import { supabase } from '$lib/db';
+	import { setServerSession } from '$lib/session';
+	import { SITE_DESCRIPTION, SITE_NAME, SITE_TAG_LINE } from '$lib/utils/siteConfig';
 	import { Button } from '@brainandbones/skeleton';
+	import { onMount } from 'svelte';
+
+	onMount(async () => {
+		supabase.auth.onAuthStateChange(async (event, session) => {
+			await setServerSession(session);
+			if (event === "SIGNED_IN") {
+				goto(PUBLIC_LOGIN_REDIRECT_PATH);
+			}
+		})
+	})
 </script>
 
 <div class="space-y-8 lg:text-left">
