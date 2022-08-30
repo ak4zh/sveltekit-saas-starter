@@ -9,7 +9,7 @@
         <nav class="flex justify-between items-center space-x-8">
             <div class="hidden md:flex justify-between items-center space-x-8">
                 {#each Object.entries(SITE_PRIMARY_NAV) as [linkName, linkData]}
-                    <a sveltekit:prefetch href="{linkData.path}">
+                    <a data-sveltekit-prefetch href="{linkData.path}">
                         {linkName}
                     </a>
                 {/each}
