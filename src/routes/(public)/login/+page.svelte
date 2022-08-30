@@ -17,9 +17,10 @@
 	let message: string
 	let error: string
 	let selected = writable('signIn')
+	let magicURL = true
 	$: isLogIn = $selected === 'signIn'
 	
-	async function signInwithToast() {
+	async function proceedwithToast() {
 		toast.promise(
 			signIn(),
 			{
@@ -62,19 +63,28 @@
 		})
 	})
 	$: emailIsValid = email?.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
-	$: formValid = $selected === 'signIn' ? emailIsValid && password : emailIsValid && password && repeatPassword && password === repeatPassword
+	$: formValid = $selected === 'signIn' ? emailIsValid && (password || magicURL) : emailIsValid && (magicURL || (password && repeatPassword && password === repeatPassword))
 	function updateMessage(status: string) {
 		message = ''
 		error = ''
+		magicURL = true
 	}
+	let loginButtonText = 'Send magic link'
 
 	$: updateMessage($selected)
+	$: {
+		if (magicURL) {
+			loginButtonText = 'Send magic link'
+		} else {
+			loginButtonText = isLogIn ? 'Log in' : 'Sign Up'
+		}
+	}
 </script>
 
 <Toaster />
 <TabGroup {selected} class="flex justify-center mb-8">
-	<Tab value="signIn">Login with existing account</Tab>
-	<Tab value="signUp">Create a new account</Tab>
+	<Tab value="signIn">Login</Tab>
+	<Tab value="signUp">Sign Up</Tab>
 </TabGroup>
 
 <Card class="hover:shadow-xl max-w-sm mx-auto" background="bg-surface-100 dark:bg-surface-800">
@@ -94,16 +104,24 @@
 			Email address
 			<input bind:value={email} name="email" id="email" type="email" placeholder="Your email address" required/>
 		</label>
-		<label for="password">
-			Password
-			<input bind:value={password} name="email" id="password" type="password" placeholder="Password" required/>
-		</label>
-		{#if $selected === 'signUp'}
+		
+		{#if !magicURL }
 			<label for="password">
-				Repeat Password
-				<input bind:value={repeatPassword} name="email" id="email" type="password" placeholder="Password" required/>
-			</label>	
+				Password
+				<input bind:value={password} name="email" id="password" type="password" placeholder="Password" required/>
+			</label>
+			{#if $selected === 'signUp'}
+				<label for="password">
+					Repeat Password
+					<input bind:value={repeatPassword} name="email" id="email" type="password" placeholder="Password" required/>
+				</label>	
+			{/if}
 		{/if}
-		<Button on:click={() => signInwithToast()} variant="filled-primary" disabled={!formValid}>{$selected === 'signIn' ? 'Log In' : 'Sign Up'}</Button>
+		<div class="flex justify-center gap-4">
+			{#if magicURL && isLogIn}
+				<Button on:click={() => magicURL = false} disabled={!formValid}>Log in by password </Button>
+			{/if}
+			<Button on:click={() => proceedwithToast()} variant="filled-primary" disabled={!formValid}>{loginButtonText}</Button>
+		</div>
 	</div>
 </Card>
