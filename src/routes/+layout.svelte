@@ -1,10 +1,13 @@
-<script>
+<script lang="ts">
 	import '../theme.postcss';	
 	import '../app.postcss';
 	import { writable } from 'svelte/store';
 	import { setContext } from 'svelte';
 	import { key as loaderKey, loader } from '$lib/utils/loader';
+	import { navigating } from '$app/stores';
+
 	let loading = writable(false)
+    $: loading.set($navigating ? true : false)
 	setContext(loaderKey, loading);
 </script>
 
