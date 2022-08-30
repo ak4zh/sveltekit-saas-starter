@@ -24,8 +24,10 @@
 	
 	onMount(async () => {
 		supabase.auth.onAuthStateChange(async (event, session) => {
+			loading.set(true)
 			await setServerSession(session);
 			if (event === "SIGNED_IN") {
+				loading.set(false)
 				goto(PUBLIC_LOGIN_REDIRECT_PATH);
 			}
 		})
