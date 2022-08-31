@@ -53,6 +53,12 @@ Update the env variables in .env and ./supabase/.env
 4) Deploy supabase edge functions
 
         supabase functions deploy stripe-sync --no-verify-jwt
+        supabase functions deploy create-stripe-customer
+
+5) Create Database hook for creating stripe customer
+
+    - Go to Database > Database Webhooks
+    - Enable Weekbook and Create a new Webhook
 
 5) Supabase dashboard configs
     - Go to your `Project Settings > Authentication` and configure following:
