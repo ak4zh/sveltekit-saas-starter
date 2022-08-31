@@ -28,8 +28,6 @@ serve(async (req) => {
 		})
 		.match({ id: record.id });
 
-	console.log({ data, error, customer });
-
 	return new Response(JSON.stringify({ customer_stripe_id: customer.id }), {
 		headers: { 'Content-Type': 'application/json' }
 	});

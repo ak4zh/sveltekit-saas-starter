@@ -1,6 +1,7 @@
 create table "public"."user_data" (
     "id" uuid not null,
     "created_at" timestamp with time zone default now(),
+    "email" text not null,
     "stripe_customer_id" text
 );
 
@@ -14,6 +15,8 @@ alter table "public"."user_data" add constraint "user_data_id_fkey" FOREIGN KEY 
 
 alter table "public"."user_data" validate constraint "user_data_id_fkey";
 
+create policy "user_data.allow_select_own_user_data" on user_data
+  for select using (auth.uid() = id);
 
 create function public.handle_new_user()
 returns trigger
@@ -21,8 +24,8 @@ language plpgsql
 security definer
 as $$
 begin
-  insert into public.user_data (id)
-  values (new.id);
+  insert into public.user_data (id, email)
+  values (new.id, new.email);
   return new;
 end;
 $$;
