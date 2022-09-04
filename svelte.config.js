@@ -8,11 +8,10 @@ const config = {
 		alias: {
 			"http": false,
 			"https": false,
-			"buffer": require.resolve("buffer"),
-			"crypto": require.resolve("crypto-browserify"),
-			"events": require.resolve("events/"),
-			"path": require.resolve("path-browserify"),
-			"stream": require.resolve("stream-browserify")
+			"crypto": "crypto-browserify",
+			"events": "events/",
+			"path": "path-browserify",
+			"stream": "stream-browserify"
 		}
 	},
 	preprocess: [
