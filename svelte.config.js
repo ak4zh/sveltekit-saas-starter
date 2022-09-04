@@ -6,8 +6,6 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			"http": false,
-			"https": false,
 			"crypto": "crypto-browserify",
 			"events": "events/",
 			"path": "path-browserify",
