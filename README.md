@@ -27,6 +27,7 @@ Update the env variables in .env and ./supabase/.env
 
     PUBLIC_STRIPE_PUBLIC_KEY=pk_test_...
     STRIPE_SECRET_KEY=sk_test_...
+    // set pricing table id if you want to render stripe pricing table
     PUBLIC_STRIPE_PRICING_TABLE_ID=
 
     PUBLIC_SUPABASE_URL=
