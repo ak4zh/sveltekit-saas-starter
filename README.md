@@ -3,11 +3,11 @@
 A free SvelteKit template for SaaS products.
 Technologies
 
-- SvelteKit - The fastest way to build svelte apps
-- Tailwind - CSS framework for styling
-- Skeleton - Svelte component library
-- Stripe - Payment processor
-- Supabase - Postgres Database & Authentication.
+- [SvelteKit](https://kit.svelte.dev/) - The fastest way to build svelte apps
+- [Tailwindcss](https://tailwindcss.com/) - CSS framework for styling
+- [Skeleton](https://skeleton.brainandbonesllc.com/) - Svelte component library
+- [Stripe](https://stripe.com/) - Payment processor
+- [Supabase](https://supabase.com/) - Postgres Database & Authentication.
 
 ## Setup
 
