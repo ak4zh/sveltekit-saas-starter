@@ -32,7 +32,7 @@
     <!-- Header -->
     <svelte:fragment slot="pageHeader"><NavBar /></svelte:fragment>
     <!-- Page Content Slot -->
-    <div class="max-w-7xl mx-auto" use:loader={loading}>
+    <div class="max-w-7xl mx-auto mx-auto p-4 md:p-12 space-y-8 md:space-y-12" use:loader={loading}>
 		<slot />
 	</div>
 </AppShell>
