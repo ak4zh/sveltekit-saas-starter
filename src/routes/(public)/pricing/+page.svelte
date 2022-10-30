@@ -10,7 +10,9 @@
 </script>
 
 <svelte:head>
-    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    {#if env.PUBLIC_STRIPE_PRICING_TABLE_ID }
+        <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    {/if}
 </svelte:head>
 
 <section>
