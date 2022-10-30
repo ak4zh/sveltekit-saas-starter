@@ -1,0 +1,1 @@
+<p>Payment cancelled. You have not been charged!</p>

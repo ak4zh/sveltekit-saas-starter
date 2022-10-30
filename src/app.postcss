@@ -1,0 +1,33 @@
+/*
+Write your global styles here, in PostCSS syntax
+*/
+
+@tailwind base;
+
+html,
+body {
+	@apply h-full overflow-hidden;
+}
+
+/*
+Global overrides to buttons styles, provided by:
+https://www.skeleton.dev/elements/buttons
+*/
+.btn,
+.btn-icon {
+	@apply font-bold;
+}
+.btn-filled-primary,
+.btn-filled-accent,
+.btn-filled-warning,
+.btn-filled-surface {
+	@apply text-white;
+}
+
+.card {
+	@apply p-4 m-4 rounded-3xl;
+}
+
+@tailwind components;
+
+@tailwind utilities;
