@@ -13,13 +13,16 @@ h1 {
 	@apply text-3xl m-2 text-center
 }
 
+.card {
+	@apply bg-blue-50 
+}
 /*
 Global overrides to buttons styles, provided by:
 https://www.skeleton.dev/elements/buttons
 */
 .btn,
 .btn-icon {
-	@apply font-bold;
+	@apply font-bold rounded-xl;
 }
 .btn-filled-primary,
 .btn-filled-accent,
@@ -33,5 +36,4 @@ https://www.skeleton.dev/elements/buttons
 }
 
 @tailwind components;
-
 @tailwind utilities;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '@brainandbones/skeleton/themes/theme-skeleton.css';
+	import '@brainandbones/skeleton/themes/theme-rocket.css';
 	import '@brainandbones/skeleton/styles/all.css';
 	import '../app.postcss';
 	import { loader } from '$lib/utils/loader';

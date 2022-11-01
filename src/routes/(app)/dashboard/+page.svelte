@@ -8,7 +8,7 @@
 </script>
 
 <div class="block">
-	<p>Protected content for {user.email}</p>
+	<pre>Protected content for {user.email}</pre>
 	<p>server-side fetched data with RLS:</p>
 </div>
 <div class="block">
