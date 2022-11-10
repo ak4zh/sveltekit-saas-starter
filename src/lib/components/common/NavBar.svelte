@@ -22,7 +22,7 @@
 </script>
 
 
-<AppBar border="border-b border-b-surface-300 dark:border-b-surface-900">
+<AppBar >
 	<!-- Branding -->
 	<svelte:fragment slot="lead">
 		<a href="/" class="text-sm sm:text-lg md:text-3xl font-bold uppercase mr-4" title="Return to Homepage">{SITE_NAME}</a>

@@ -60,9 +60,9 @@
 		<div class="mt-6">
 			<p class="has-text-centered">
 				{#if isRegister}
-					Don't have an account? <a href="/auth">Sign up</a>
+					Already have an account? <a href="/auth">Login</a>	
 				{:else}
-					Already have an account? <a href="/auth?register">Sign Up</a>
+					Don't have an account? <a href="/auth?register">Sign up</a>
 				{/if}
 			</p>
 		</div>

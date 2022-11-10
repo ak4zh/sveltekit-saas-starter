@@ -1,28 +1,26 @@
-/*
-Write your global styles here, in PostCSS syntax
-*/
-
 @tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.glass {
+	@apply bg-opacity-60 dark:bg-opacity-60 backdrop-filter backdrop-blur-lg
+}
 html,
 body {
-	@apply h-full overflow-hidden;
+	@apply h-full overflow-hidden bg-gradient-to-r from-primary-500 to-surface-500 via-accent-500;
 }
 
+.card {
+	@apply bg-white p-5 rounded-xl glass;
+	/* @apply bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-primary-100 via-surface-400 to-blue-200; */
+}
 h1 {
 	@apply text-3xl m-2 text-center
 }
 
-.card {
-	@apply bg-blue-50 
-}
-/*
-Global overrides to buttons styles, provided by:
-https://www.skeleton.dev/elements/buttons
-*/
 .btn,
 .btn-icon {
-	@apply font-bold rounded-xl;
+	@apply font-bold rounded-xl ;
 }
 .btn-filled-primary,
 .btn-filled-accent,
@@ -30,10 +28,3 @@ https://www.skeleton.dev/elements/buttons
 .btn-filled-surface {
 	@apply text-white;
 }
-
-.card {
-	@apply p-4 m-4 rounded-3xl;
-}
-
-@tailwind components;
-@tailwind utilities;
