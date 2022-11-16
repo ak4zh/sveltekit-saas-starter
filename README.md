@@ -9,7 +9,13 @@
 7) Run `supabase db push` to push the migrations.
 8) Go to Supabase > Settings > API and add `stripe` scheme in Exposed schema and Extra search path
 
-9) Deploy the supabase edge functions:
+9) Push the required env variables in supabse dashboard.
+
+```bash
+supabase secrets set --env-file ./supabase/.env
+```
+
+10) Deploy the supabase edge functions:
 
 ```bash
 supabase functions deploy create-stripe-customer
