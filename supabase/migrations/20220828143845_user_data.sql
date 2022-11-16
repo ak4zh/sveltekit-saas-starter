@@ -41,6 +41,6 @@ CREATE TRIGGER on_user_data_insert_create_stripe_customer
     AFTER INSERT ON public.user_data
     FOR EACH ROW
     EXECUTE FUNCTION supabase_functions.http_request(
-      'https://otnreioayuyswodbcnlz.functions.supabase.co/create-stripe-customer', 'POST',
-      '{"Content-type":"application/json","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90bnJlaW9heXV5c3dvZGJjbmx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc0MTI0MzAsImV4cCI6MTk4Mjk4ODQzMH0.6mbFFOtgwBzxYJKUxJKp04PQNR40hpmwhIgm0uB0uVE"}'
+      'https://xsbznfavbzjwhooewyyg.functions.supabase.co/create-stripe-customer', 'POST',
+      '{"Content-type":"application/json","Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzYnpuZmF2Ynpqd2hvb2V3eXlnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgyMjk4NzYsImV4cCI6MTk4MzgwNTg3Nn0.k19SvRSvtpKGIWWBPLFwsL4QdfcBPJ_d6OpyNnC7IWc"}'
     );
