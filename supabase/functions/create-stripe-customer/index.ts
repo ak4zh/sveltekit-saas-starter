@@ -15,6 +15,8 @@ serve(async (req) => {
 	const { record } = await req.json();
 
 	const customer = await stripe.customers.create({
+		// stripe customer name is mandadoty for few countries for exports
+		name: record?.raw_user_meta_data?.full_name?.split('@')[0] || record.email,
 		email: record.email,
 		metadata: {
 			supabase_id: record.id

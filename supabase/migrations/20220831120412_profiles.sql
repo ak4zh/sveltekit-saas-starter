@@ -26,3 +26,21 @@ create policy "profiles.allow_select_own_profile" on profiles
 
 create policy "profiles.allow_update_own_profile" on profiles
   for update using (auth.uid() = id);
+
+
+create function public.create_user_profile()
+returns trigger
+language plpgsql
+security definer
+as $$
+begin
+  insert into public.profiles (id)
+  values (new.id);
+  return new;
+end;
+$$;
+
+-- trigger the function every time a user is inserted
+create trigger on_auth_user_inserted_create_profile
+  after insert on auth.users
+  for each row execute procedure public.create_user_profile();

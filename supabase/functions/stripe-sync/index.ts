@@ -1,12 +1,9 @@
 import { serve } from "https://deno.land/std@0.131.0/http/server.ts";
-import Stripe from "https://esm.sh/stripe@9.6.0?target=deno&no-check";
-import {
-  createDenoHandler,
-  createSupabaseAdapter,
-} from "https://esm.sh/stripe-sync@0.0.9";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.0.0-rc.4";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.1.0";
+import { createDenoHandler } from "https://esm.sh/stripe-sync@0.1.3/adapters/deno";
+import { createSupabaseAdapter } from "https://esm.sh/stripe-sync@0.1.3/databaseAdapters/supabase";
+import Stripe from "https://esm.sh/stripe@10.17.0?target=deno&no-check";
 import invariant from "https://esm.sh/tiny-invariant@1.3.1";
-
 const stripe = Stripe(Deno.env.get("STRIPE_API_KEY"), {
 	httpClient: Stripe.createFetchHttpClient(),
 	apiVersion: "2022-08-01",
