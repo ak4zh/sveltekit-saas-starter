@@ -36,5 +36,11 @@
 		<div class="max-w-7xl mx-auto mx-auto p-4 md:p-12 space-y-8 md:space-y-12">
 			<slot />
 		</div>
+		<svelte:fragment slot="pageFooter">
+			<div class="flex gap-4 card justify-center !rounded-none">
+				<a href="/privacy">Privacy</a>
+				<a href="/terms">Terms and Conditions</a>
+			</div>
+		</svelte:fragment>
 	</AppShell>
 </div>
