@@ -25,6 +25,22 @@
 			<div class="block notification is-primary">{form.message}</div>
 		{/if}
 		<form method="post" use:enhance={handleSubmit} action='?/{isRegister ? 'signup' : 'login'}' class="flex flex-col gap-2">
+			{#if isRegister}
+				<div class="field">
+					<label for="full_name" class="label">Full Name</label>
+					<p class="control">
+						<input
+							id="full_name"
+							name="full_name"
+							value={form?.values?.full_name ?? ''}
+							class="input"
+							type="text"
+							placeholder="Full Name"
+							required
+						/>
+					</p>
+				</div>
+			{/if}
 			<div class="field">
 				<label for="email" class="label">Email</label>
 				<p class="control">

@@ -57,6 +57,7 @@ export const actions: Actions = {
 
 		const email = formData.get('email') as string;
 		const password = formData.get('password') as string;
+		const full_name = formData.get('full_name') as string;
 
 		if (!email) {
 			return invalid(400, {
@@ -67,7 +68,8 @@ export const actions: Actions = {
 			return invalid(400, {
 				error: 'Please enter a password',
 				values: {
-					email
+					email,
+					full_name
 				}
 			});
 		}
@@ -75,7 +77,10 @@ export const actions: Actions = {
 		const { error } = await supabaseClient.auth.signUp({
 			email,
 			password,
-			options: { emailRedirectTo: url.origin }
+			options: { 
+				emailRedirectTo: url.origin,
+				data: {full_name: full_name}
+			}
 		});
 
 		if (error) {
@@ -83,7 +88,8 @@ export const actions: Actions = {
 				return invalid(400, {
 					error: 'Invalid credentials.',
 					values: {
-						email
+						email,
+						full_name
 					}
 				});
 			}
@@ -91,7 +97,8 @@ export const actions: Actions = {
 			return invalid(500, {
 				error: 'Server error. Try again later.',
 				values: {
-					email
+					email,
+					full_name
 				}
 			});
 		}
