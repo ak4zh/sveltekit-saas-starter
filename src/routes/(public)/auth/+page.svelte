@@ -15,6 +15,7 @@
 		};
 	};
 </script>
+
 <section class="columns max-w-xl mx-auto">
 	<div class="column is-half is-offset-one-quarter card">	
 		<h1>{isRegister ? 'Sign up' : 'Log In'}</h1>
