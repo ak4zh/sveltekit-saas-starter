@@ -8,8 +8,9 @@ export const load: PageLoad = async (event: PageLoadEvent) => {
         .from('profiles')
         .select('*')
         .eq('id', user.id)
+        .single();
     return {
         user,
-        profile: data ? data[0] : undefined
+        profile: data
     };
 };

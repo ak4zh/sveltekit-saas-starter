@@ -12,8 +12,6 @@ export const actions: Actions = {
         .from('profiles')
         .update({full_name: full_name, username: username})
         .eq('id', session?.user.id)
-      console.log(data)
-      console.log(error)
       return { success: true };
     }
 };
