@@ -1,11 +1,11 @@
 ## Features
 
-[x] Landing Page
-[x] Auto create Pricing Page using stripe Products
-[x] Handle authentication
-[x] Auto create Stripe customer and sync with database on user sign up
-[x] Auto Sync database with stripe data
-[x] Profile page for users to update their info
+- [x] Landing Page
+- [x] Auto create Pricing Page using stripe Products
+- [x] Handle authentication
+- [x] Auto create Stripe customer and sync with database on user sign up
+- [x] Auto Sync database with stripe data
+- [x] Profile page for users to update their info
 
 ## Steps to Setup
 
