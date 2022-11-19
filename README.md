@@ -1,3 +1,14 @@
+## Features
+
+[x] Landing Page
+[x] Auto create Pricing Page using stripe Products
+[x] Handle authentication
+[x] Auto create Stripe customer and sync with database on user sign up
+[x] Auto Sync database with stripe data
+[x] Profile page for users to update their info
+
+## Steps to Setup
+
 1) Go to supabase dashboard > Database > Wehbooks and enable Webhhooks.
 2) Open `supabase/migrations/20220828143845_user_data.sql` and replace the default supabase url abnd anon key with your project info.
 
