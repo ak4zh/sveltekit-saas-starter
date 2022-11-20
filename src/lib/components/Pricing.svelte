@@ -11,7 +11,8 @@
     }
 </script>
 
-<div class="card">
+
+<div class="flex flex-col gap-4">
     <TabGroup selected={storeTab} justify="justify-start md:justify-center" highlight="border-accent-500" color="text-accent-500">
         {#each Object.entries(products) as [interval, prices]}
             <Tab value="{interval}">

@@ -29,7 +29,7 @@
 	</svelte:fragment>
 	<!-- Navigation -->
 	<svelte:fragment slot="trail">
-		{#if $page.data?.session?.user && !$page.url.pathname.startsWith('/dashboard')}
+		{#if !$page.url.pathname.startsWith('/dashboard')}
 			<section class="hidden lg:flex space-x-4">
 				<a class="btn" href="/pricing">Pricing</a>
 			</section>
